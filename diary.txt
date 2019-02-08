@@ -1,0 +1,2 @@
+1. Chat using py-libp2p wasn't working properly, so I corrected it. Now it is working properly.
+2. Made sample `server.py` and `client.py` files, as in `chat.py`
