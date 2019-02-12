@@ -4,9 +4,8 @@ import sys
 import click
 import multiaddr
 
-from libp2p import new_node
-from libp2p.peer.peerinfo import info_from_p2p_addr
-
+from p2p.libp2p import new_node
+from p2p.libp2p.peer import info_from_p2p_addr
 
 PROTOCOL_ID = '/chat/1.0.0'
 
@@ -19,7 +18,7 @@ async def read_data(stream):
             if read_string != "\n":
                 # Green console colour: 	\x1b[32m
                 # Reset console colour: 	\x1b[0m
-                print("\x1b[32m %s\x1b[0m > " % read_string, end="")
+                print("\n\x1b[32m %s\x1b[0m " % read_string, end="")
 
 
 async def write_data(stream):
@@ -35,6 +34,7 @@ async def run(port, destination):
         async def stream_handler(stream):
             asyncio.ensure_future(read_data(stream))
             asyncio.ensure_future(write_data(stream))
+
         host.set_stream_handler(PROTOCOL_ID, stream_handler)
 
         port = None
@@ -44,8 +44,7 @@ async def run(port, destination):
 
         if not port:
             raise RuntimeError("was not able to find the actual local port")
-
-        print("Run './examples/chat/chat.py -p %s -d /ip4/127.0.0.1/tcp/%s/p2p/%s' on another console." %
+        print("Run './examples/chat/chat.py -p %s -d /ip4/127.0.0.1/tcp/%s/p2p/%s' on another console.\n" %
               (int(port) + 1, port, host.get_id().pretty()))
         print("You can replace 127.0.0.1 with public IP as well.")
         print("\nWaiting for incoming connection\n\n")
@@ -71,7 +70,6 @@ async def run(port, destination):
 @click.option('--help', is_flag=True, default=False, help='display help')
 # @click.option('--debug', is_flag=True, default=False, help='Debug generates the same node ID on every execution')
 def main(port, destination, help):
-
     if help:
         print("This program demonstrates a simple p2p chat application using libp2p\n\n")
         print("Usage: Run './chat -p <SOURCE_PORT>' where <SOURCE_PORT> can be any port number.")

@@ -1,7 +1,6 @@
 import asyncio
 import sys
-
-from libp2p import new_node
+from p2p.libp2p import new_node
 
 
 async def read_data(stream):
@@ -10,7 +9,9 @@ async def read_data(stream):
         if read_string is not None:
             read_string = read_string.decode()
             if read_string != "\n":
-                print("# %s> " % read_string, end="")
+                # Green console colour: 	\x1b[32m
+                # Reset console colour: 	\x1b[0m
+                print("\n\x1b[32m %s\x1b[0m " % read_string, end="")
 
 
 async def write_data(stream):
@@ -36,10 +37,9 @@ async def run(port):
 
     if not port:
         raise RuntimeError("was not able to find the actual local port")
-
-    print(f"Running at port: {port}")
-    print(f"Multiaddr: /ip4/127.0.0.1/tcp/{port}/p2p/{host.get_id().pretty()}'")
-    print("Waiting for incoming connection")
+    print("Destination to connect:", f"/ip4/127.0.0.1/tcp/{port}/p2p/{host.get_id().pretty()}")
+    print("You can replace 127.0.0.1 with public IP as well.")
+    print("\nWaiting for incoming connection\n\n")
 
 
 def main(port):
@@ -55,5 +55,5 @@ def main(port):
 
 if __name__ == '__main__':
     PROTOCOL_ID = '/chat/1.0.0'
-    port = 9000
-    main(port=port)
+    port = 9001
+    main(port)

@@ -1,0 +1,31 @@
+constants.js - mostly timeout constants
+
+
+Dependencies:
+async                   maybe inbuilt
+bignumber               inbuilt
+cids                    py-cid
+debug                   maybe logging will suffice
+ipfs-block              Can be done
+just-debounce-it        Can be done
+lodash.isequalwith      inbuilt & Can be done
+moving-average          Can be done
+multicodec              py-multicodec
+multihashing-async      py-multihash & some crypto module
+protons                 protobuf
+pull-length-prefixed    maybe not needed
+pull-stream             maybe not needed
+varint-decoder          varint
+
+
+References for dependencies:
+https://stackoverflow.com/questions/50160187/buffer-function-for-python-3
+https://docs.python.org/3/library/stdtypes.html#memoryview
+https://github.com/ipfs/js-ipfs-block/blob/master/src/index.js
+https://www.npmjs.com/package/pull-length-prefixed
+https://www.npmjs.com/package/pull-stream
+https://github.com/multiformats/js-multihashing-async
+https://github.com/pgte/moving-average/blob/master/index.js
+https://github.com/linsomniac/python-movingaverage
+https://www.geeksforgeeks.org/debouncing-in-javascript/
+https://lodash.com/docs#isEqualWith

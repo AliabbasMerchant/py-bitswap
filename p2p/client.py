@@ -3,8 +3,8 @@ import sys
 
 import multiaddr
 
-from libp2p import new_node
-from libp2p.peer.peerinfo import info_from_p2p_addr
+from p2p.libp2p import new_node
+from p2p.libp2p.peer import info_from_p2p_addr
 
 
 async def read_data(stream):
@@ -13,7 +13,9 @@ async def read_data(stream):
         if read_string is not None:
             read_string = read_string.decode()
             if read_string != "\n":
-                print("# %s> " % read_string, end="")
+                # Green console colour: 	\x1b[32m
+                # Reset console colour: 	\x1b[0m
+                print("\n\x1b[32m %s\x1b[0m " % read_string, end="")
 
 
 async def write_data(stream):
@@ -52,6 +54,6 @@ def main(port, destination):
 
 if __name__ == '__main__':
     PROTOCOL_ID = '/chat/1.0.0'
-    destination = ''
     port = 9000
-    main(port=port, destination=destination)
+    destination = '/ip4/127.0.0.1/tcp/9001/p2p/QmaeUF2b2TQcsu3rTiyygPnULGh3wQnDxi5AKDyEKKxSJx'
+    main(port, destination)

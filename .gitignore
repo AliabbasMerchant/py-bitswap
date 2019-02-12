@@ -1,5 +1,11 @@
+# Personal files
+personal_config.txt
 scratchpad.py
+js-ipfs-bitswap
+
 libp2p
+
+# IDE-specific config
 .idea
 
 # Byte-compiled / optimized / DLL files
