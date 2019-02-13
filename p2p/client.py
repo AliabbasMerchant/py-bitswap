@@ -3,8 +3,8 @@ import sys
 
 import multiaddr
 
-from p2p.libp2p import new_node
-from p2p.libp2p.peer import info_from_p2p_addr
+from libp2p import new_node
+from libp2p.peer.peerinfo import info_from_p2p_addr
 
 
 async def read_data(stream):

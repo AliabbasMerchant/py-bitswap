@@ -1,6 +1,6 @@
 import asyncio
 import sys
-from p2p.libp2p import new_node
+from libp2p import new_node
 
 
 async def read_data(stream):
