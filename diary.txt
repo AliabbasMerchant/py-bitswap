@@ -1,2 +1,10 @@
+Research is still in progress.
+So, I have put 'TODO: why' tags
+
 1. Chat using py-libp2p wasn't working properly, so I corrected it. Now it is working properly.
 2. Made sample `server.py` and `client.py` files, as in `chat.py`
+
+3. Started with WantList
+4. What to do with stats?
+
+5. WantList done
