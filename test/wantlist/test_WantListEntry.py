@@ -12,11 +12,11 @@ class WantListEntryTest(unittest.TestCase):
         cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
         e = WantListEntry(cid)
         self.assertEqual(e.cid, cid)
-        self.assertEqual(e._ref_counter, 1)
+        self.assertEqual(e._ref_count, 1)
         self.assertEqual(e.priority, 1)
         e = WantListEntry(cid, 5)
         self.assertEqual(e.cid, cid)
-        self.assertEqual(e._ref_counter, 1)
+        self.assertEqual(e._ref_count, 1)
         self.assertEqual(e.priority, 5)
         with self.assertRaises(ValueError):
             WantListEntry('df')
@@ -24,26 +24,26 @@ class WantListEntryTest(unittest.TestCase):
     def test_inc(self):
         cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
         e = WantListEntry(cid)
-        self.assertEqual(e._ref_counter, 1)
-        e.inc_ref_counter()
-        self.assertEqual(e._ref_counter, 2)
+        self.assertEqual(e._ref_count, 1)
+        e.inc_ref_count()
+        self.assertEqual(e._ref_count, 2)
 
     def test_dec(self):
         cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
         e = WantListEntry(cid)
-        self.assertEqual(e._ref_counter, 1)
-        e.dec_ref_counter()
-        self.assertEqual(e._ref_counter, 0)
-        e.dec_ref_counter()
-        self.assertEqual(e._ref_counter, 0)
+        self.assertEqual(e._ref_count, 1)
+        e.dec_ref_count()
+        self.assertEqual(e._ref_count, 0)
+        e.dec_ref_count()
+        self.assertEqual(e._ref_count, 0)
 
     def test_has_refs(self):
         cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
         e = WantListEntry(cid)
         self.assertTrue(e.has_refs())
-        e.dec_ref_counter()
+        e.dec_ref_count()
         self.assertFalse(e.has_refs())
-        e.dec_ref_counter()
+        e.dec_ref_count()
         self.assertFalse(e.has_refs())
 
     def test_str(self):
@@ -58,9 +58,9 @@ class WantListEntryTest(unittest.TestCase):
         e2 = WantListEntry(cid, 5)
         self.assertTrue(e.equals(e2))
         self.assertTrue(e == e2)
-        e2.inc_ref_counter()
-        self.assertFalse(e.equals(e2))  # different _ref_counter
-        self.assertFalse(e == e2)  # different _ref_counter
+        e2.inc_ref_count()
+        self.assertFalse(e.equals(e2))  # different _ref_count
+        self.assertFalse(e == e2)  # different _ref_count
         e2 = WantListEntry(cid, 3)
         self.assertFalse(e.equals(e2))  # different priority
         self.assertFalse(e == e2)  # different priority

@@ -5,31 +5,82 @@ import cid as py_cid
 
 class WantListTest(unittest.TestCase):
 
-    def setUp(self):
+    def setUp(self):  # test_init
         self.wl = WantList()
-        print('set up')
 
     def test_add(self):
         cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+        self.wl.add(cid)
+        self.assertTrue(str(cid) in self.wl.entries)
+        self.assertEqual(1, self.wl.entries[str(cid)].priority)
+        self.wl.add(cid, 3)
+        self.assertTrue(str(cid) in self.wl.entries)
+        self.assertEqual(3, self.wl.entries[str(cid)].priority)
+        self.assertEqual(2, self.wl.entries[str(cid)]._ref_count)
 
-        self.assertEqual('a' * 4, 'aaaa')
+    def test_remove(self):
+        cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+        self.wl.remove(cid)
+        self.assertFalse(str(cid) in self.wl.entries)
+        self.wl.add(cid)
+        self.wl.remove(cid)
+        self.assertFalse(str(cid) in self.wl.entries)
+        self.wl.add(cid)
+        self.wl.add(cid)
+        self.wl.add(cid)
+        self.wl.remove(cid)
+        self.assertTrue(str(cid) in self.wl.entries)
+        self.assertEqual(2, self.wl.entries[str(cid)]._ref_count)
+        self.wl.remove(cid)
+        self.assertTrue(str(cid) in self.wl.entries)
+        self.assertEqual(1, self.wl.entries[str(cid)]._ref_count)
+        self.wl.remove(cid)
+        self.assertFalse(str(cid) in self.wl.entries)
 
-    def test_upper(self):
-        self.assertEqual('foo'.upper(), 'FOO')
+    def test_force_remove(self):
+        cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+        self.wl.add(cid)
+        self.wl.add(cid)
+        self.wl.force_remove(cid)
+        self.assertFalse(str(cid) in self.wl.entries)
 
-    def test_isupper(self):
-        self.assertTrue('FOO'.isupper())
-        self.assertFalse('Foo'.isupper())
+    def test_sorted_entries(self):
+        with self.assertRaises(NotImplementedError):
+            self.wl.sorted_entries()
 
-    def test_strip(self):
-        s = 'geeksforgeeks'
-        self.assertEqual(s.strip('geek'), 'sforgeeks')
+    def test_len(self):
+        cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+        self.assertEqual(0, len(self.wl))
+        self.wl.add(cid)
+        self.wl.add(cid)
+        self.assertEqual(1, len(self.wl))
+        self.wl.add(py_cid.make_cid('QmaozNR7DZddK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdTPdT'))
+        self.assertEqual(2, len(self.wl))
 
-    def test_split(self):
-        s = 'hello world'
-        self.assertEqual(s.split(), ['hello', 'world'])
-        with self.assertRaises(TypeError):
-            s.split(2)
+    def test_str(self):
+        self.wl.add(py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4'))
+        self.wl.add(py_cid.make_cid('QmaozNR7DZddK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdTPdT'))
+        expected = 'WantList, number_of_entries=2'
+        self.assertEqual(expected, str(self.wl))
+
+    def test_iter(self):
+        cids = [py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4'),
+                py_cid.make_cid('QmaozNR7DZddK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdTPdT')]
+        self.wl.add(cids[0])
+        self.wl.add(cids[1])
+        count = 0
+        for i in self.wl:
+            self.assertEqual(str(cids[count]), i)
+            count += 1
+
+    def test_contains(self):
+        cids = [py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4'),
+                py_cid.make_cid('QmaozNR7DZddK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdTPdT')]
+        self.wl.add(cids[0])
+        self.assertTrue(cids[0] in self.wl)
+        self.assertFalse(cids[1] in self.wl)
+        self.wl.add(cids[1])
+        self.assertTrue(cids[1] in self.wl)
 
 
 if __name__ == '__main__':

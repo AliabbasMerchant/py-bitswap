@@ -15,7 +15,7 @@ class WantList:
         cid_str = str(cid)
         entry = self.entries.get(cid_str)
         if entry is not None:
-            entry.inc()
+            entry.inc_ref_count()
             entry.priority = priority  # TODO: Why ?
         else:
             self.entries[cid_str] = WantListEntry(cid, priority)
@@ -26,7 +26,7 @@ class WantList:
         cid_str = str(cid)
         entry = self.entries.get(cid_str)
         if entry is not None:
-            entry.dec()
+            entry.dec_ref_count()
             if entry.has_refs():  # don't delete if it has refs
                 return
             else:
