@@ -20,9 +20,9 @@ class WantListEntry:
         return self._ref_count > 0
 
     def __str__(self):
-        return f'WantListEntry(cid={str(self.cid)}, priority={self.priority}) refs:{self._ref_count}'
+        return f'WantListEntry (cid={str(self.cid)}, priority={self.priority}) refs={self._ref_count}'
 
-    def __eq__(self, other):
+    def __eq__(self, other: 'WantListEntry'):
         return self._ref_count == other._ref_count and \
                str(self.cid) == str(other.cid) and \
                self.priority == other.priority

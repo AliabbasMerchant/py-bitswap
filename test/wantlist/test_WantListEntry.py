@@ -5,9 +5,6 @@ import cid as py_cid
 
 class WantListEntryTest(unittest.TestCase):
 
-    def setUp(self):
-        pass
-
     def test_init(self):
         cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
         e = WantListEntry(cid)
@@ -49,7 +46,7 @@ class WantListEntryTest(unittest.TestCase):
     def test_str(self):
         cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
         e = WantListEntry(cid, 5)
-        expected = f'WantListEntry(cid={str(cid)}, priority=5) refs:1'
+        expected = f'WantListEntry (cid={str(cid)}, priority=5) refs=1'
         self.assertEqual(expected, str(e))
 
     def test_eq(self):
