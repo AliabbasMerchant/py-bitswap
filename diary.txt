@@ -7,4 +7,4 @@ So, I have put 'TODO: why' tags
 3. Started with WantList
 4. What to do with stats?
 
-5. WantList done
+5. WantListEntry, WantList and corresponding tests done

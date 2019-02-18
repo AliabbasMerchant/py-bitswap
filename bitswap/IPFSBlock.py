@@ -1,4 +1,5 @@
 import cid as py_cid
+from typing import Union
 
 
 class Block:
@@ -6,7 +7,7 @@ class Block:
     Represents an immutable block of data that is uniquely referenced with a cid.
     """
 
-    def __init__(self, data, cid: py_cid.cid):
+    def __init__(self, data, cid: Union[py_cid.CIDv0, py_cid.CIDv1]):
         """
         Represents an immutable block of data that is uniquely referenced with a cid.
 
@@ -45,5 +46,5 @@ class Block:
         return self._cid
 
     @cid.setter
-    def cid(self, val):
+    def cid(self, val: Union[py_cid.CIDv0, py_cid.CIDv1]):
         raise RuntimeError("Cannot change the cid of a block")

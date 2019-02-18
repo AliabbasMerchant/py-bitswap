@@ -68,10 +68,9 @@ class WantListTest(unittest.TestCase):
                 py_cid.make_cid('QmaozNR7DZddK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdTPdT')]
         self.wl.add(cids[0])
         self.wl.add(cids[1])
-        count = 0
+        self.assertEqual(len(self.wl), 2)
         for i in self.wl:
-            self.assertEqual(str(cids[count]), i)
-            count += 1
+            self.assertTrue(i in [str(cid) for cid in cids])
 
     def test_contains(self):
         cids = [py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4'),
