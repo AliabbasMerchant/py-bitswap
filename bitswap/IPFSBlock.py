@@ -37,7 +37,7 @@ class Block:
         raise RuntimeError("Cannot change the data of a block")
 
     @property
-    def cid(self):
+    def cid(self) -> Union[py_cid.CIDv0, py_cid.CIDv1]:
         """
         The cid of this block
 
