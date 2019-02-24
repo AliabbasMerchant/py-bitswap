@@ -1,0 +1,48 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "bitswap"
+
+author       = "Aliabbas Merchant"
+author-email = "merchantaliabbas@gmail.com"
+home-page    = "https://github.com/AliabbasMerchant/py-ipfs-bitswap"
+keywords     = "ipfs bitswap development"
+license      = "MIT License"
+description-file = "README.md"
+
+# Unfortunately these currently need to be duplicated from `requirements.txt`
+requires-python = ">=3.7"
+requires = [
+	'multiaddr',
+    'py-cid',
+    'py-multibase',
+    'py-multicodec',
+    'py-multihash',
+    'pycryptodome',
+    'varint',
+    'protobuf'
+]
+
+classifiers = [
+	"Development Status :: In Progress",
+	"Intended Audience :: Developers",
+	"Intended Audience :: Information Technology",
+	"Intended Audience :: Science/Research",
+
+	"Topic :: Internet",
+	"Topic :: Scientific/Engineering",
+	"Topic :: System :: Files",
+	"Topic :: System :: Data-Exchange",
+
+	# Pick your license as you wish (should match "license" above)
+	"License :: OSI Approved :: MIT License",
+
+	# Specify the Python versions you support here. In particular, ensure
+	# that you indicate whether you support Python 2, Python 3 or both.
+	"Programming Language :: Python :: 3.7"
+]
+
+#[tool.flit.metadata.urls]
+#Documentation = ""

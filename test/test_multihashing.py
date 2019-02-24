@@ -1,23 +1,7 @@
 import unittest
 import multihash
-import bitswap.multihashing as multihashing
+from bitswap import multihashing
 from Crypto.Hash import SHA1
-
-
-def get_bits(b):
-    a = ""
-    for i in range(1, 9):
-        if b & (2 ** (8 - i)) != 0:
-            a += "1"
-        else:
-            a += "0"
-    return a
-
-
-def get_str_bits(a):
-    for t in a:
-        print(get_bits(t), end=" ")
-    print()
 
 
 class MultihashingTest(unittest.TestCase):
@@ -65,7 +49,7 @@ class MultihashingTest(unittest.TestCase):
                     replace(" ", ""),
         }
         for func in expected:
-            self.assertEquals(expected[func], multihashing.multihashing(self.data, func).hex())
+            self.assertEqual(expected[func], multihashing.multihashing(self.data, func).hex())
 
 
 if __name__ == '__main__':

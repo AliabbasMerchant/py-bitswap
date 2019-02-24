@@ -1,5 +1,5 @@
-from bitswap import WantListEntry
 from bitswap import MessageEntry
+from bitswap import WantListEntry
 import unittest
 import cid as py_cid
 

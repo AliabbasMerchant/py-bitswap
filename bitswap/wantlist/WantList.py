@@ -11,7 +11,7 @@ class WantList:
         self.entries = {}
         # self._stats = stats
 
-    def add(self, cid: Union[py_cid.CIDv0, py_cid.CIDv1], priority: int = 1) ->  None:
+    def add(self, cid: Union[py_cid.CIDv0, py_cid.CIDv1], priority: int = 1) -> None:
         cid_str = str(cid)
         entry = self.entries.get(cid_str)
         if entry is not None:
