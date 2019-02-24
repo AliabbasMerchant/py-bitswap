@@ -1,8 +1,14 @@
+dist: xenial
 language: python
-matrix:
-  include:
-  - python: "3.7"
-    env: TOXENV=py37
+python: 3.7
+sudo: true
+env: TOXENV=py37
+#matrix:
+#  include:
+#  - python: 3.7
+#    dist: xenial
+#    sudo: true
+#    env: TOXENV=py37
 #  - python: "3.7"
 #    env: TOXENV=codestyle
 #    before_install: true
