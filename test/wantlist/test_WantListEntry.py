@@ -1,71 +1,70 @@
-from bitswap import WantListEntry
-import unittest
+import pytest
 import cid as py_cid
+from bitswap import WantListEntry
 
 
-class WantListEntryTest(unittest.TestCase):
-
-    def test_init(self):
-        cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
-        e = WantListEntry(cid)
-        self.assertEqual(e.cid, cid)
-        self.assertEqual(e._ref_count, 1)
-        self.assertEqual(e.priority, 1)
-        e = WantListEntry(cid, 5)
-        self.assertEqual(e.cid, cid)
-        self.assertEqual(e._ref_count, 1)
-        self.assertEqual(e.priority, 5)
-        with self.assertRaises(ValueError):
-            WantListEntry('df')
-
-    def test_inc(self):
-        cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
-        e = WantListEntry(cid)
-        self.assertEqual(e._ref_count, 1)
-        e.inc_ref_count()
-        self.assertEqual(e._ref_count, 2)
-
-    def test_dec(self):
-        cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
-        e = WantListEntry(cid)
-        self.assertEqual(e._ref_count, 1)
-        e.dec_ref_count()
-        self.assertEqual(e._ref_count, 0)
-        e.dec_ref_count()
-        self.assertEqual(e._ref_count, 0)
-
-    def test_has_refs(self):
-        cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
-        e = WantListEntry(cid)
-        self.assertTrue(e.has_refs())
-        e.dec_ref_count()
-        self.assertFalse(e.has_refs())
-        e.dec_ref_count()
-        self.assertFalse(e.has_refs())
-
-    def test_str(self):
-        cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
-        e = WantListEntry(cid, 5)
-        expected = f'WantListEntry (cid={str(cid)}, priority=5) refs=1'
-        self.assertEqual(expected, str(e))
-
-    def test_eq(self):
-        cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
-        e = WantListEntry(cid, 5)
-        e2 = WantListEntry(cid, 5)
-        self.assertTrue(e.equals(e2))
-        self.assertTrue(e == e2)
-        e2.inc_ref_count()
-        self.assertFalse(e.equals(e2))  # different _ref_count
-        self.assertFalse(e == e2)  # different _ref_count
-        e2 = WantListEntry(cid, 3)
-        self.assertFalse(e.equals(e2))  # different priority
-        self.assertFalse(e == e2)  # different priority
-        cid2 = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqW71ZcU9p7QdrshMpa')
-        e2 = WantListEntry(cid2, 5)
-        self.assertFalse(e.equals(e2))  # different cid
-        self.assertFalse(e == e2)  # different cid
+def test_init():
+    cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+    e = WantListEntry(cid)
+    assert e.cid == cid
+    assert e._ref_count == 1
+    assert e.priority == 1
+    e = WantListEntry(cid, 5)
+    assert e.cid == cid
+    assert e._ref_count == 1
+    assert e.priority == 5
+    with pytest.raises(ValueError):
+        WantListEntry('df')
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_inc():
+    cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+    e = WantListEntry(cid)
+    assert e._ref_count == 1
+    e.inc_ref_count()
+    assert e._ref_count == 2
+
+
+def test_dec():
+    cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+    e = WantListEntry(cid)
+    assert e._ref_count == 1
+    e.dec_ref_count()
+    assert e._ref_count == 0
+    e.dec_ref_count()
+    assert e._ref_count == 0
+
+
+def test_has_refs():
+    cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+    e = WantListEntry(cid)
+    assert e.has_refs()
+    e.dec_ref_count()
+    assert not (e.has_refs())
+    e.dec_ref_count()
+    assert not (e.has_refs())
+
+
+def test_str():
+    cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+    e = WantListEntry(cid, 5)
+    expected = f'WantListEntry (cid={str(cid)}, priority=5) refs=1'
+    assert expected, str(e)
+
+
+def test_eq():
+    cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+    e = WantListEntry(cid, 5)
+    e2 = WantListEntry(cid, 5)
+    assert e.equals(e2)
+    assert e == e2
+    e2.inc_ref_count()
+    assert not (e.equals(e2))  # different _ref_count
+    assert not (e == e2)  # different _ref_count
+    e2 = WantListEntry(cid, 3)
+    assert not (e.equals(e2))  # different priority
+    assert not (e == e2)  # different priority
+    cid2 = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqW71ZcU9p7QdrshMpa')
+    e2 = WantListEntry(cid2, 5)
+    assert not (e.equals(e2))  # different cid
+    assert not (e == e2)  # different cid

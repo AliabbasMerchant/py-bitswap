@@ -30,8 +30,7 @@ class MessageEntry:
         return f'BitswapMessageEntry (cid={str(self.cid)}, priority={self.priority}, cancel={self.cancel})'
 
     def __eq__(self, other: 'MessageEntry') -> bool:
-        return self.cancel == other.cancel and \
-               self.entry == other.entry
+        return self.cancel == other.cancel and self.entry == other.entry
 
     def equals(self, other: 'MessageEntry') -> bool:
         return self == other

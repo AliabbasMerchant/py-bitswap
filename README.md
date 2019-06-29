@@ -42,9 +42,10 @@ You can submit bug reports using the [GitHub issue tracker](https://github.com/A
 ### Pull requests
 
 Pull requests are welcome.  Before submitting a new pull request, please
-make sure that your code passes the unit tests:
+make sure that your code passes the unit tests and the codestyle tests:
 
     $ tox
+    $ tox -e codestyle
 
 Please make sure to include new unit tests for new features or changes in
 behavior.

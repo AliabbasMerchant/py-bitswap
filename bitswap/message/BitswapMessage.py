@@ -12,9 +12,8 @@ from bitswap.varint_decoder import varint_decoder
 
 
 def get_prefix(cid: Union[py_cid.CIDv0, py_cid.CIDv1]):
-    return bytes(("0" + str(cid.version)).encode("utf-8").hex()) + \
-           bytes(mc_prefix(cid.codec)) + \
-           mh_prefix(cid.multihash)
+    return bytes(("0" + str(cid.version)).encode("utf-8").hex()) + bytes(mc_prefix(cid.codec)) + mh_prefix(
+        cid.multihash)
 
 
 class BitswapMessage:
@@ -100,9 +99,7 @@ class BitswapMessage:
         return message.SerializeToString()
 
     def __eq__(self, other: 'BitswapMessage'):
-        return self.full == other.full and \
-               self.want_list == other.want_list and \
-               self.blocks == other.blocks
+        return self.full == other.full and self.want_list == other.want_list and self.blocks == other.blocks
 
     def equals(self, other: 'BitswapMessage'):
         return self == other

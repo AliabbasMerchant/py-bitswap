@@ -5,10 +5,10 @@
 # import types
 # import want_manager
 
-import constants
-import network
-import notifications
-from log import log
+# import constants
+# import network
+# import notifications
+# from log import log
 
 
 default_options = {
@@ -27,4 +27,3 @@ statsKeys = [
     'wantListLength',
     'peerCount'
 ]
-

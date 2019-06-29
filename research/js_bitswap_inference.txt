@@ -2,20 +2,24 @@ constants.js - mostly timeout constants
 
 
 Dependencies:
-async                   maybe inbuilt
-bignumber               inbuilt
-cids                    py-cid
-debug                   maybe logging will suffice
-ipfs-block              Can be done
-just-debounce-it        Can be done
-lodash.isequalwith      inbuilt & Can be done
-moving-average          Can be done
-multicodec              py-multicodec
-multihashing-async      py-multihash & some crypto module
-protons                 protobuf
-pull-length-prefixed    maybe not needed
-pull-stream             maybe not needed
-varint-decoder          varint
+async                   ✔️ Use the built-in `asyncio` module (Python 3.5+)
+bignum                  ✔️ builtin (use the standard `int` type of Python 3.x)
+cids                    ✔️ py-cid (Module is ready for prime-time)
+debug                   ✔️ Use the built-in `logging` module for the time being
+ipfs-block              ✔️ Trivial, add as part of `py-ipfs-bitswap` or extract to utility library if needed by several modules
+just-debounce-it        ✖️ Trivial, add as part of `py-ipfs-bitswap` or extract to utility library if needed by several modules
+lodash.isequalwith      ✔️ Use Python's inbuilt `==` operator 😉 – ensure all relevant classes implement `__eq__`
+moving-average          ~ Use https://pypi.org/project/average/ – It will need a patch to make numpy integration optional through
+multicodec              ✔️ py-multicodec
+multihashing-async      ~ py-multihash (+ Extensions for generating actual hash values)
+protons                 ✔️ protobuf
+pull-length-prefixed    ✖️ Probably better suited as an extension for the `varint` library
+pull-stream             ✔️ Not needed. Use asyncio streams (https://docs.python.org/3/library/asyncio-stream.html) instead
+varint-decoder          ~ varint
+
+✔️ means “Already done, no further work required”
+~     means “Available, but may need further work”
+✖️ means “Not done yet”
 
 
 References for dependencies:
