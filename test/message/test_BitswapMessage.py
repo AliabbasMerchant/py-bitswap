@@ -2,6 +2,9 @@ import pytest
 import cid as py_cid
 from bitswap import BitswapMessage
 
+cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
+cid_str = str(cid)
+
 
 def test_empty():
     pass
@@ -9,8 +12,6 @@ def test_empty():
 
 def test_add_entry():
     bm = BitswapMessage(False)
-    cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
-    cid_str = str(cid)
     with pytest.raises(ValueError):
         bm.add_entry('df', True)
 

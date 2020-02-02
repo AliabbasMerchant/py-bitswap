@@ -11,7 +11,8 @@ class Block:
         """
         Represents an immutable block of data that is uniquely referenced with a cid.
 
-        :param data: An object supporting the buffer protocol
+        :param data: An object supporting the
+
         :param cid: A cid
         """
         try:
@@ -34,7 +35,7 @@ class Block:
 
     @data.setter
     def data(self, val):
-        raise RuntimeError("Cannot change the data of a block")
+        raise AttributeError("Cannot change the data of a block")
 
     @property
     def cid(self) -> Union[py_cid.CIDv0, py_cid.CIDv1]:
@@ -47,4 +48,4 @@ class Block:
 
     @cid.setter
     def cid(self, val: Union[py_cid.CIDv0, py_cid.CIDv1]):
-        raise RuntimeError("Cannot change the cid of a block")
+        raise AttributeError("Cannot change the cid of a block")

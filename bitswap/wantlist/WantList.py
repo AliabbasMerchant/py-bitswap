@@ -5,7 +5,6 @@ from typing import Union
 
 # TODO: stats
 class WantList:
-    # Entry = WantListEntry  # TODO: Why ?
 
     def __init__(self):
         self.entries = {}
