@@ -2,7 +2,7 @@
 > Python implementation of the Bitswap 'data exchange' protocol used by IPFS 
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![Build Status](https://api.travis-ci.org/AliabbasMerchant/py-ipfs-bitswap.svg?branch=master)](https://travis-ci.com/AliabbasMerchant/py-ipfs-bitswap)
+[![Build Status](https://api.travis-ci.org/AliabbasMerchant/py-bitswap.svg?branch=master)](https://travis-ci.com/AliabbasMerchant/py-bitswap)
 
 
 ### Work in Progress
