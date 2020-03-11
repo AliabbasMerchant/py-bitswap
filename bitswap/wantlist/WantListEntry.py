@@ -26,6 +26,3 @@ class WantListEntry:
     def __eq__(self, other: 'WantListEntry') -> bool:
         return self._ref_count == other._ref_count and str(self.cid) == str(
             other.cid) and self.priority == other.priority
-
-    def equals(self, other: 'WantListEntry') -> bool:
-        return self == other

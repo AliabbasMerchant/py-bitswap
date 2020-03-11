@@ -1,6 +1,10 @@
-import pytest
 import cid as py_cid
 from bitswap import WantList
+
+
+def test_init():
+    wl = WantList()
+    assert len(wl.entries.keys()) == 0
 
 
 def test_add():
@@ -47,8 +51,16 @@ def test_force_remove():
 
 def test_sorted_entries():
     wl = WantList()
-    with pytest.raises(NotImplementedError):
-        wl.sorted_entries()
+    wl.add(py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4'))
+    # TODO add some more cids
+    sorted_entries = wl.sorted_entries()
+    c = None
+    for index, entry in enumerate(sorted_entries.keys()):
+        if index == 0:
+            c = entry
+        else:
+            assert entry >= c
+            c = entry
 
 
 def test_len():

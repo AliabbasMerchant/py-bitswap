@@ -6,8 +6,8 @@ async                   ✔️ Use the built-in `asyncio` module (Python 3.5+)
 bignum                  ✔️ builtin (use the standard `int` type of Python 3.x)
 cids                    ✔️ py-cid (Module is ready for prime-time)
 debug                   ✔️ Use the built-in `logging` module for the time being
-ipfs-block              ✔️ Trivial, add as part of `py-ipfs-bitswap` or extract to utility library if needed by several modules
-just-debounce-it        ✖️ Trivial, add as part of `py-ipfs-bitswap` or extract to utility library if needed by several modules
+ipfs-block              ✔️ Trivial, add as part of `py-bitswap` or extract to utility library if needed by several modules
+just-debounce-it        ✖️ Trivial, add as part of `py-bitswap` or extract to utility library if needed by several modules
 lodash.isequalwith      ✔️ Use Python's inbuilt `==` operator 😉 – ensure all relevant classes implement `__eq__`
 moving-average          ~ Use https://pypi.org/project/average/ – It will need a patch to make numpy integration optional through
 multicodec              ✔️ py-multicodec

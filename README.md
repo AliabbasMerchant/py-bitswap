@@ -1,4 +1,4 @@
-# py-ipfs-bitswap
+# py-bitswap
 > Python implementation of the Bitswap 'data exchange' protocol used by IPFS 
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
@@ -37,7 +37,7 @@ Not ready as yet
 
 ### Bug reports
 
-You can submit bug reports using the [GitHub issue tracker](https://github.com/AliabbasMerchant/py-ipfs-bitswap/issues).
+You can submit bug reports using the [GitHub issue tracker](https://github.com/AliabbasMerchant/py-bitswap/issues).
 
 ### Pull requests
 

@@ -11,8 +11,7 @@ class Block:
         """
         Represents an immutable block of data that is uniquely referenced with a cid.
 
-        :param data: An object supporting the
-
+        :param data: An object supporting the buffer protocol
         :param cid: A cid
         """
         try:

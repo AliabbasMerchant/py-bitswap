@@ -1,21 +1,20 @@
 from .WantListEntry import WantListEntry
 import cid as py_cid
-from typing import Union
+from typing import Union, Optional
 
 
-# TODO: stats
 class WantList:
 
     def __init__(self):
-        self.entries = {}
+        self.entries: dict = {}
         # self._stats = stats
 
-    def add(self, cid: Union[py_cid.CIDv0, py_cid.CIDv1], priority: int = 1) -> None:
+    def add(self, cid: Union[py_cid.CIDv0, py_cid.CIDv1], priority: Optional[int] = 1) -> None:
         cid_str = str(cid)
         entry = self.entries.get(cid_str)
         if entry is not None:
             entry.inc_ref_count()
-            entry.priority = priority  # TODO: Why ?
+            entry.priority = priority  # TODO: Why ? Shouldn't we store the max of the priorities?
         else:
             self.entries[cid_str] = WantListEntry(cid, priority)
             # if self._stats is not None:
@@ -37,8 +36,8 @@ class WantList:
             del self.entries[cid_str]
 
     def sorted_entries(self):
-        # TODO
-        raise NotImplementedError()
+        # sorted by value
+        return {k: v for k, v in sorted(self.entries.items(), key=lambda item: item[1])}
 
     def __len__(self) -> int:
         return len(self.entries)

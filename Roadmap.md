@@ -4,16 +4,18 @@
 
 ##Important Components
 
-Currently:
-1. WantList and WantListEntry
-2. Message and MessageEntry
-3. DecisionEngine
-4. Ledger (and LedgerEntry?)
-5. BlocksQueue (and BlocksQueueEntry?)
-6. WantManager
-7. MessageQueue (and MessageQueueEntry?)
-8. NetworkManager and interface (we can directly use libp2p here, or make some mock-up for the time being)
-9. IPFSBlock
+TODO:
+- [x] WantList
+- [x] WantListEntry
+- [ ] Message
+- [ ] MessageEntry
+- [ ] DecisionEngine
+- [x] Ledger
+- [ ] BlocksQueue (and BlocksQueueEntry?)
+- [ ] WantManager
+- [ ] MessageQueue (and MessageQueueEntry?)
+- [ ] NetworkManager and interface (we can directly use libp2p here, or make some mock-up for the time being)
+- [x] IPFSBlock
 
 Later On:
 1. Stats

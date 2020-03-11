@@ -56,15 +56,11 @@ def test_eq():
     cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
     e = WantListEntry(cid, 5)
     e2 = WantListEntry(cid, 5)
-    assert e.equals(e2)
     assert e == e2
     e2.inc_ref_count()
-    assert not (e.equals(e2))  # different _ref_count
     assert not (e == e2)  # different _ref_count
     e2 = WantListEntry(cid, 3)
-    assert not (e.equals(e2))  # different priority
     assert not (e == e2)  # different priority
     cid2 = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqW71ZcU9p7QdrshMpa')
     e2 = WantListEntry(cid2, 5)
-    assert not (e.equals(e2))  # different cid
     assert not (e == e2)  # different cid
