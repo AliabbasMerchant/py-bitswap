@@ -1,4 +1,4 @@
-from bitswap import WantListEntry
+from bitswap.wantlist import WantListEntry
 import cid as py_cid
 from typing import Union
 
@@ -31,6 +31,3 @@ class MessageEntry:
 
     def __eq__(self, other: 'MessageEntry') -> bool:
         return self.cancel == other.cancel and self.entry == other.entry
-
-    def equals(self, other: 'MessageEntry') -> bool:
-        return self == other

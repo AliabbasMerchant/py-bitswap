@@ -8,7 +8,7 @@ TODO:
 - [x] WantList
 - [x] WantListEntry
 - [ ] Message
-- [ ] MessageEntry
+- [x] MessageEntry
 - [ ] DecisionEngine
 - [x] Ledger
 - [ ] BlocksQueue (and BlocksQueueEntry?)

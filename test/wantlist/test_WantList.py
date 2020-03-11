@@ -1,5 +1,5 @@
 import cid as py_cid
-from bitswap import WantList
+from bitswap.wantlist import WantList
 
 
 def test_init():

@@ -1,6 +1,3 @@
-from .message_pb2 import Message
-import cid as py_cid
-from .MessageEntry import MessageEntry
 from typing import Union
 from multicodec import get_prefix as mc_prefix
 from multicodec.constants import CODE_TABLE
@@ -9,6 +6,9 @@ from multihash import get_prefix as mh_prefix
 from bitswap import Block
 from bitswap.multihashing import multihashing
 from bitswap.varint_decoder import varint_decoder
+import cid as py_cid
+from .message_pb2 import Message
+from .MessageEntry import MessageEntry
 
 
 def get_prefix(cid: Union[py_cid.CIDv0, py_cid.CIDv1]):
@@ -100,9 +100,6 @@ class BitswapMessage:
 
     def __eq__(self, other: 'BitswapMessage'):
         return self.full == other.full and self.want_list == other.want_list and self.blocks == other.blocks
-
-    def equals(self, other: 'BitswapMessage'):
-        return self == other
 
     def __str__(self):
         return f'BitswapMessage (full={self.full}) , want_list={self.want_list.keys()}, blocks={self.blocks.keys()}'

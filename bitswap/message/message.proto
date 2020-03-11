@@ -1,6 +1,7 @@
 syntax="proto2";
 package bitswap;
 // As in js-ipfs-bitswap
+// from: https://github.com/ipfs/go-ipfs/blob/master/exchange/bitswap/message/pb/message.proto
 message Message {
     message Wantlist {
         message Entry {

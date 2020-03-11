@@ -1,6 +1,6 @@
 import pytest
 import cid as py_cid
-from bitswap import BitswapMessage
+from bitswap.message import BitswapMessage
 
 cid = py_cid.make_cid('QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
 cid_str = str(cid)

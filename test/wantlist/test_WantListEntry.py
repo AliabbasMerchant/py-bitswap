@@ -1,6 +1,6 @@
 import pytest
 import cid as py_cid
-from bitswap import WantListEntry
+from bitswap.wantlist import WantListEntry
 
 
 def test_init():
